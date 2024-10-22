@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4639777554064083042}
   - component: {fileID: 4619812645882839643}
   - component: {fileID: 4062608100605216508}
+  - component: {fileID: 8605871804185249322}
+  - component: {fileID: 7027806054175441243}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Untagged
@@ -92,6 +94,34 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2292809014076271436}
   m_Enabled: 1
+--- !u!114 &8605871804185249322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2292809014076271436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f8daa51194c8bf43891b215c988b8f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7027806054175441243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2292809014076271436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0847c62084fb50b4496c5ba4e12e6337, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseX: 0
+  mouseY: 0
+  speedX: 250
+  speedY: 200
 --- !u!1 &4188107535119596603
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,6 +241,7 @@ GameObject:
   - component: {fileID: 7045266078293396018}
   - component: {fileID: 3499327179412560307}
   - component: {fileID: 1652267065268781464}
+  - component: {fileID: 856595751976323737}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -293,7 +324,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4602951145626347150}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 90a4f4e46d45d6046a37e11857a5a6da, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -363,6 +394,7 @@ MonoBehaviour:
   remoteCamera: {fileID: 4619812645882839643}
   move: {fileID: 0}
   rotation: {fileID: 0}
+  rigidbody: {fileID: 0}
 --- !u!114 &3499327179412560307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,7 +422,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseX: 0
-  speed: 200
+  mouseY: 0
+  speedX: 250
+  speedY: 200
+--- !u!54 &856595751976323737
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4602951145626347150}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!1 &6935808334972111860
 GameObject:
   m_ObjectHideFlags: 0
