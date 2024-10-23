@@ -4,16 +4,13 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
-using Unity.VisualScripting;
-
 public class RoomManager : MonoBehaviourPunCallbacks
 {
-    //[SerializeField] Button roomCreateButton;
     [SerializeField] InputField roomTitleInputField;
     [SerializeField] InputField roomCapacityInputField;
     [SerializeField] Transform contentTransform;
 
-    private Dictionary<string,RoomInfo> dictionary = new Dictionary<string,RoomInfo>();
+    private Dictionary<string,GameObject> dictionary = new Dictionary<string,GameObject>();
 
     public override void OnJoinedRoom()
     {
@@ -32,37 +29,38 @@ public class RoomManager : MonoBehaviourPunCallbacks
     }
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        // 룸 삭제
+        GameObject temporaryRoom;
 
-        // 룸 업데이트
-
-        // 룸 생성
-        InstantiateRoom();
-    }
-
-    public void InstantiateRoom()
-    {
-        foreach(RoomInfo roomInfo in dictionary.Values)
+        foreach(RoomInfo room in roomList)
         {
-            //1. room 오브젝트 생성합니다.
-            GameObject room = Instantiate(Resources.Load<GameObject>("Room"));
-            //2. room 오브젝트의 위치값을 설정합니다.
-            room.transform.SetParent(contentTransform);
-            // 3. room 오브젝트 안에 있는 Text 속성을 설정합니다.
-            room.GetComponent<Information>().SetData
-                (
-                    roomInfo.Name,
-                    roomInfo.PlayerCount,
-                    roomInfo.MaxPlayers
-                );
+            // 룸이 삭제된 경우
+            if(room.RemovedFromList == true)
+            {
+                dictionary.TryGetValue(room.Name, out temporaryRoom);
+                Destroy(temporaryRoom);
+                dictionary.Remove(room.Name);
+            }
+            // 룸이 업데이트된 경우
+            else
+            {
+                // 룸이 처음 생성되는 경우
+                if(dictionary.ContainsKey(room.Name) == false)
+                {
+                    GameObject roomObject = Instantiate(Resources.Load<GameObject>("Room"), contentTransform);
+
+                    roomObject.GetComponent<Information>().SetData(room.Name,room.PlayerCount,room.MaxPlayers);
+
+                    dictionary.Add(room.Name, roomObject);
+                }
+                // 룸의 정보가 변경된 경우
+                else
+                {
+                    dictionary.TryGetValue(room.Name, out temporaryRoom);
+
+                    temporaryRoom.GetComponent<Information>().SetData(room.Name, room.PlayerCount, room.MaxPlayers);
+                }
+            }
         }
     }
-    public void UpdateRoom()
-    {
 
-    }
-    public void RemoveRoom()
-    {
-
-    }
 }
