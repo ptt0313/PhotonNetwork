@@ -26,5 +26,12 @@ public class UnitSpawnerManager : MonoBehaviourPunCallbacks
             yield return waitForSeconds;
         }
     }
-
+    public override void OnMasterClientSwitched(Player newMasterClient)
+    {
+        PhotonNetwork.SetMasterClient(PhotonNetwork.PlayerList[0]);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            StartCoroutine(Create());
+        }
+    }
 }

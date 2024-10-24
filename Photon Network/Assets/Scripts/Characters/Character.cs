@@ -25,6 +25,11 @@ public class Character : MonoBehaviourPun
     {
         if (photonView.IsMine == false) { return; }
 
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            MouseManager.Instance.SetMouse(true);
+        }
+
         rotation.InputRotateY();
     }
     void FixedUpdate()
