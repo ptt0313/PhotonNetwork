@@ -8,6 +8,7 @@ public class DialogManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] InputField inputField;
     [SerializeField] Transform parentTransform;
+    [SerializeField] ScrollRect scrollRect;
 
     void Update()
     {
@@ -26,6 +27,7 @@ public class DialogManager : MonoBehaviourPunCallbacks
 
             // inputField의 텍스트를 초기화합니다.
             inputField.text = "";
+
         }
     }
     [PunRPC]
@@ -42,6 +44,7 @@ public class DialogManager : MonoBehaviourPunCallbacks
         // 채팅을 입력한 후에도 이어서 입력할 수 있도록 설정합니다.
         inputField.ActivateInputField();
 
+        scrollRect.verticalNormalizedPosition = 0.0f;
 
     }
 }
